@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js-1 | Calculator</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    input::placeholder{
+        font-size: 3.5rem;
+        color: black;
+        user-select: none;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: rebeccapurple;
+    }
+    input{
+        height: 80px;
+        width: 100%;
+         padding-top: 30px;
+         padding-left: 10px;
+         padding-bottom: 10px;
+         outline: none;
+         border: none;
+         user-select: none;
+          font-size: 3.5rem;
+          cursor: not-allowed;
+    }
+    .box{
+        border: 2px solid rgb(52, 63, 68);
+        width: 300px;
+        border-radius: 5px;
+        box-shadow: 3px 3px 30px rgba(110, 110, 110, 0.8), -3px -3px 30px rgba(110, 110, 110, 0.8);
+    }
+    .btn-calc{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        justify-items: center;
+        padding: 3px;
+    }
+    .btn-calc > button{
+        padding: 5px;
+        height: 60px;
+        width: 60px;
+        margin: 5px;
+        border-radius: 100%;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        font-weight: bold;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 1rem;
+    }
+</style>
+<body>
+    <div class="box">
+        <div class="inputs">
+            <input type="" id="top" readonly placeholder="0">
+        </div>
+        <div class="btn-calc">
+            <button onclick="btn('1')">1</button>
+            <button onclick="btn('2')">2</button>
+            <button onclick="btn('3')">3</button>
+            <button onclick="btn('4')">4</button>
+            <button onclick="btn('5')">5</button>
+            <button onclick="btn('6')">6</button>
+            <button onclick="btn('7')">7</button>
+            <button onclick="btn('8')">8</button>
+            <button onclick="btn('9')">9</button>
+            <button onclick="btn('0')">0</button>
+            <button onclick="btn('+')">+</button>
+            <button onclick="btn('-')">-</button>
+            <button onclick="btn('*')">X</button>
+            <button onclick="btn('/')">/</button>
+            <button onclick="total('=')">=</button>
+            <button onclick="clearData()">C</button>
+        </div>
+    </div>
+
+
+<script>
+    let input = document.getElementById('top');
+
+    function btn(num){
+        input.value+=num;
+    }
+    function clearData(){
+        input.value = null;
+    }
+    function total(){
+        try{
+             input.value=eval(input.value);
+        }
+        catch{
+            input.value = "Error !!!"
+        }
+    }
+</script>
+
+</body>
+</html>
