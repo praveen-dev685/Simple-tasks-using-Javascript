@@ -1,0 +1,111 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #3F5EFB;
+    background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+    flex-direction: column;
+}
+
+.box{
+    background-color: white;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    user-select: none;
+}
+.hand{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.btns{
+    display: flex;
+    justify-content: space-around;
+}
+
+.inner-box > h2{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px;
+    text-align: center;
+}
+.inner-box > h3{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(48, 158, 201);
+    padding: 5px 10px 5px 10px;
+    border:2px solid rgb(48, 158, 201);
+    border-radius: 5px;  
+    font-weight: 600;
+    text-align: center;
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s linear all;
+}
+.left > h1{
+    font-size: 4rem;
+    transition: 0.3s linear all;
+}
+.right > h1{
+    font-size: 4rem;
+    transition: 0.3s linear all;
+
+}
+.vs > h2{
+    font-size: 4rem;
+    color: rgb(180, 173, 173);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.left > h5{
+    text-align: center;
+    color: rgb(116, 113, 113);
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.right > h5{
+    text-align: center;
+    color: rgb(116, 113, 113);
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.btns{
+    display: flex;
+    justify-content: space-around;
+    
+}
+.paper > button{
+    font-size: 3rem;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.scissor > button{
+    font-size: 3rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 20px;
+}
+.stone > button{
+    font-size: 3rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    outline: none;
+}
+.paper,.stone,.scissor > h4{
+    text-align: center;
+    font-size: 1.2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
