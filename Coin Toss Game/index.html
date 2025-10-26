@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Toss Js</title>
+    <link rel="stylesheet" href="./task.css">
+</head>
+<style>
+
+    /* CSS codes */
+    
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #3F5EFB;
+        background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+        flex-direction: column;
+    }
+
+    .box {
+        background-color: white;
+        min-height: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-radius: 10px;
+        user-select: none;
+        min-width: 400px;
+        padding: 20px;
+    }
+
+    .hand {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .btns {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .inner-box>h2 {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .inner-box>h3 {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: rgb(48, 158, 201);
+        padding: 5px 10px 5px 10px;
+        border: 2px solid rgb(48, 158, 201);
+        border-radius: 5px;
+        font-weight: 600;
+        text-align: center;
+        font-size: 1.2rem;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s linear all;
+    }
+
+    .left>h1 {
+        font-size: 4rem;
+        transition: 0.3s linear all;
+    }
+
+    .right>h1 {
+        font-size: 4rem;
+        transition: 0.3s linear all;
+
+    }
+
+    .vs>h2 {
+        font-size: 4rem;
+        color: rgb(180, 173, 173);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .left>h5 {
+        text-align: center;
+        color: rgb(116, 113, 113);
+        font-size: 1rem;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .right>h5 {
+        text-align: center;
+        color: rgb(116, 113, 113);
+        font-size: 1rem;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .btns {
+        display: flex;
+        justify-content: space-around;
+
+    }
+
+    .heads>button {
+        font-size: 2.5rem;
+        border: none;
+        outline: none;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+    .tail>button {
+        font-size: 2.5rem;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .heads,
+    .tail>h4 {
+        text-align: center;
+        font-size: 1.2rem;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+</style>
+
+
+<!-- HTML codes -->
+<body>
+    <div class="box">
+        <div class="inner-box">
+            <h2>Coin Toss Game</h1>
+                <h3 id="result">Welcome to the Game</h3>
+        </div>
+        <div class="hand">
+            <div class="left">
+                <h5>You</h5>
+                <h1 id="player"></h1>
+            </div>
+            <div class="vs">
+                <h2>VS</h2>
+            </div>
+            <div class="right">
+                <h5>Computer</h5>
+                <h1 id="computer"></h1>
+            </div>
+
+        </div>
+        <div class="btns">
+            <div class="heads">
+                <button onclick="data('💲')">💲</button>
+                <h4>Head</h4>
+            </div>
+            <div class="tail">
+                <button onclick="data('🪙')">🪙</button>
+                <h4>Tail</h4>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Javascript codes -->
+    <script>
+        let result = document.getElementById("result");
+        let player = document.getElementById("player");
+        let computer = document.getElementById("computer");
+        let arr = ["💲", "🪙"];
+
+        function data(num) {
+            player.innerHTML = num
+            let arrLength = arr.length;
+            let condition = Math.random() * arrLength;
+            let condition2 = Math.floor(condition);
+            computer.innerHTML = arr[condition2];
+
+
+            if (num == arr[condition2]) {
+                result.innerHTML = "Won";
+                result.style.backgroundColor = "green";
+                result.style.color = "white";
+            }
+            else {
+                result.innerHTML = "Lost";
+                result.style.backgroundColor = "red";
+                result.style.color = "white";
+            }
+            console.log(condition2)
+
+        }
+
+    </script>
+</body>
+
+</html>
