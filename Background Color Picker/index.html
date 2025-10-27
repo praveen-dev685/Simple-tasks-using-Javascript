@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS - Background Color Change</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        transition: background-color 0.6s ease;
+    }
+
+    .box {
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        border-radius: 15px;
+        padding: 50px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+    }
+
+    p {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: #fff;
+        letter-spacing: 1px;
+    }
+
+    span {
+        display: inline-block;
+        margin-top: 10px;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #00ffd5;
+        text-shadow: 0 0 10px #00ffd5, 0 0 20px #00ffd5;
+    }
+
+    button {
+        height: 50px;
+        width: 220px;
+        border-radius: 8px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        margin: 20px 10px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: white;
+        background: linear-gradient(135deg, #ff416c, #ff4b2b);
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(255, 75, 43, 0.4);
+    }
+
+    button:hover {
+        transform: scale(1.08);
+        box-shadow: 0 8px 25px rgba(255, 75, 43, 0.6);
+    }
+
+    button:nth-child(3) {
+        background: linear-gradient(135deg, #00c6ff, #0072ff);
+        box-shadow: 0 5px 15px rgba(0, 114, 255, 0.4);
+    }
+
+    button:nth-child(3):hover {
+        box-shadow: 0 8px 25px rgba(0, 114, 255, 0.6);
+        transform: scale(1.08);
+    }
+</style>
+
+<body id="body">
+
+    <div class="box">
+        <p>Background Color Code :<br>
+            <span id="color">#f0f0f0</span>
+        </p>
+        <button onclick="change()">🎨 Change Color</button>
+        <button onclick="reset()">🔁 Reset</button>
+    </div>
+
+    <script>
+        let index = 0;
+        const colors = [
+            "#1a2b3c", "#4f5a6d", "#7e8f90", "#abc123", "#def456", "#123abc", "#456def", "#789012", "#345678", "#90abcd",
+            "#ff5733", "#33ff57", "#3357ff", "#f0f0f0", "#0f0f0f", "#aa11bb", "#bb22cc", "#cc33dd", "#dd44ee", "#ee55ff",
+            "#112233", "#223344", "#334455", "#445566", "#556677", "#667788", "#778899", "#8899aa", "#99aabb", "#aabbcc",
+            "#bbaacc", "#ccaabb", "#ddaacc", "#eeaabb", "#ffaacc", "#aaffcc", "#ccffaa", "#bbffaa", "#ddffcc", "#eeffdd",
+            "#123456", "#234567", "#345678", "#456789", "#56789a", "#6789ab", "#789abc", "#89abcd", "#9abcde", "#abcdef",
+            "#fedcba", "#edcba9", "#dcba98", "#cba987", "#ba9876", "#a98765", "#987654", "#876543", "#765432", "#654321",
+            "#112244", "#223355", "#334466", "#445577", "#556688", "#667799", "#7788aa", "#8899bb", "#99aacc", "#aabbcc",
+            "#bbccdd", "#ccddee", "#ddeeff", "#eeff00", "#ff0011", "#0011ff", "#1100ff", "#22ff33", "#33ff44", "#44ff55",
+            "#55ff66", "#66ff77", "#77ff88", "#88ff99", "#99ffaa", "#aaffbb", "#bbffcc", "#ccffdd", "#ddffee", "#eeffdd",
+            "#123123", "#234234", "#345345", "#456456", "#567567", "#678678", "#789789", "#890890", "#901901", "#012012",
+            "#abcdef", "#bcdef0", "#cdef01", "#def012", "#ef0123", "#f01234", "#012345", "#123456", "#234567", "#345678"
+        ];
+
+        let textColor = document.getElementById("color");
+        let body = document.getElementById("body");
+
+        function change() {
+            let indexLength = colors.length;
+            let condition = Math.random()*indexLength;
+            let condition2 = Math.floor(condition)
+            body.style.backgroundColor = colors[condition2];
+            textColor.innerHTML = colors[condition2];
+            textColor.style.color = "white";
+        }
+
+        function reset() {
+            body.style.backgroundColor = "";
+            textColor.innerHTML = "#f0f0f0";
+            textColor.style.color = "black";
+        }
+    </script>
+
+</body>
+
+</html>
