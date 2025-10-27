@@ -13,34 +13,147 @@
         box-sizing: border-box;
     }
 
+    body {
+        background: radial-gradient(circle at center, #1e1e2f, #090911);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        font-family: 'Poppins', sans-serif;
+    }
+
     .box {
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
         min-height: 100vh;
-        background: #3F5EFB;
-        background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
-        
+        width: 100%;
+    }
 
+    /* Background glowing rings */
+    .box::before, .box::after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        animation: rotate 10s linear infinite;
+        opacity: 0.2;
+    }
+
+    .box::before {
+        width: 400px;
+        height: 400px;
+        background: conic-gradient(from 0deg, #ff0080, #7928ca, #2afadf, #ff0080);
+    }
+
+    .box::after {
+        width: 600px;
+        height: 600px;
+        background: conic-gradient(from 180deg, #00f260, #0575e6, #ff0080, #00f260);
+        animation-direction: reverse;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
     }
 
     .clock {
         display: flex;
-        min-width: 400px;
-        box-shadow: 3px 3px 30px rgb(78, 19, 187);
-        min-height: 200px;
-        justify-content: center;
         align-items: center;
-        border-radius: 10px;
+        justify-content: center;
+        min-width: 420px;
+        min-height: 220px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: 0.3s ease;
     }
-    .clock > h1{
-        font-size: 3rem;
-        margin: 0px 7px;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    h3{
-        font-size: 1.5rem;
 
+    .clock:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 60px rgba(255, 255, 255, 0.5);
+    }
+
+    .clock h1 {
+        margin: 0 10px;
+        color: #fff;
+        text-shadow: 0 0 15px #fff, 0 0 25px #00ffe0;
+        animation: pulse 2s infinite alternate;
+    }
+
+    @keyframes pulse {
+        from {
+            text-shadow: 0 0 10px #00ffe0, 0 0 20px #00ffe0;
+        }
+        to {
+            text-shadow: 0 0 30px #00ffe0, 0 0 50px #ff00ff;
+        }
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        margin-left: 10px;
+        color: #fff;
+        text-shadow: 0 0 15px #00ffbb;
+    }
+
+    #hours {
+        font-size: 4rem;
+        color: #00ffff;
+    }
+
+    #minute {
+        font-size: 3.5rem;
+        color: #80ffea;
+    }
+
+    #second {
+        font-size: 3rem;
+        color: #fff;
+    }
+
+    .blink {
+        animation: blink 1s infinite;
+        color: #ff00c8;
+        font-size: 4rem;
+    }
+
+    @keyframes blink {
+        0%, 100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.2;
+        }
+    }
+
+    h4 {
+        position: absolute;
+        bottom: 20px;
+        font-size: 1.2rem;
+        color: #c4f2ff;
+        letter-spacing: 2px;
+        text-shadow: 0 0 10px #00ffff;
+        animation: glow 3s infinite alternate;
+    }
+
+    @keyframes glow {
+        from {
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+        }
+        to {
+            text-shadow: 0 0 30px #ff0080, 0 0 50px #ff0080;
+        }
     }
 </style>
 
@@ -48,15 +161,13 @@
     <div class="box">
         <div class="clock">
             <h1 id="hours"></h1>
-            <h1>:</h1>
+            <h1 class="blink">:</h1>
             <h1 id="minute"></h1>
-            <h1>:</h1>
+            <h1 class="blink">:</h1>
             <h1 id="second"></h1>
             <h3 id="ampm"></h3>
             <h4 id="day"></h4>
         </div>
-        
-        
     </div>
 
     <script>
@@ -71,38 +182,33 @@
             let hou = date.getHours();
             let mint = date.getMinutes();
             let sec = date.getSeconds();
-            
 
             if (hou >= 12) {
                 ampms = "PM";
+                ampm.style.color = "#ff0080";
+            } else {
+                ampms = "AM";
+                ampm.style.color = "#00ffb7";
             }
-            else{
-                ampms="AM";
+
+            hou = hou > 12 ? hou - 12 : hou;
+            if (hou == 0) {
+                hou = 12;
             }
-            hours = hours > 12 ? hours - 12 : hours;
-            if (hours == 0) {
-                hours = 12;
-            }
-            hou = hou < 10 ? "0"+hou : hou;
+
+            hou = hou < 10 ? "0" + hou : hou;
             mint = mint < 10 ? "0" + mint : mint;
             sec = sec < 10 ? "0" + sec : sec;
 
             hours.innerHTML = hou;
             minute.innerHTML = mint;
             second.innerHTML = sec;
-            
-            
-            
+            ampm.innerHTML = ampms;
         }
 
-        setInterval(() => {
+        setInterval(()=>{
             clock()
-            
-        }, 1000)
-
-
-
-
+        }, 1000);
     </script>
 </body>
 
