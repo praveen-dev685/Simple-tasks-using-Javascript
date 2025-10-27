@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock Using Javascript</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #3F5EFB;
+        background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+        
+
+    }
+
+    .clock {
+        display: flex;
+        min-width: 400px;
+        box-shadow: 3px 3px 30px rgb(78, 19, 187);
+        min-height: 200px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+    }
+    .clock > h1{
+        font-size: 3rem;
+        margin: 0px 7px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    h3{
+        font-size: 1.5rem;
+
+    }
+</style>
+
+<body>
+    <div class="box">
+        <div class="clock">
+            <h1 id="hours"></h1>
+            <h1>:</h1>
+            <h1 id="minute"></h1>
+            <h1>:</h1>
+            <h1 id="second"></h1>
+            <h3 id="ampm"></h3>
+            <h4 id="day"></h4>
+        </div>
+        
+        
+    </div>
+
+    <script>
+        let hours = document.getElementById("hours");
+        let minute = document.getElementById("minute");
+        let second = document.getElementById("second");
+        let ampm = document.getElementById("ampm");
+        let days = document.getElementById("days");
+
+        function clock() {
+            const date = new Date()
+            let hou = date.getHours();
+            let mint = date.getMinutes();
+            let sec = date.getSeconds();
+            
+
+            if (hou >= 12) {
+                ampms = "PM";
+            }
+            else{
+                ampms="AM";
+            }
+            hours = hours > 12 ? hours - 12 : hours;
+            if (hours == 0) {
+                hours = 12;
+            }
+            hou = hou < 10 ? "0"+hou : hou;
+            mint = mint < 10 ? "0" + mint : mint;
+            sec = sec < 10 ? "0" + sec : sec;
+
+            hours.innerHTML = hou;
+            minute.innerHTML = mint;
+            second.innerHTML = sec;
+            
+            
+            
+        }
+
+        setInterval(() => {
+            clock()
+            
+        }, 1000)
+
+
+
+
+    </script>
+</body>
+
+</html>
