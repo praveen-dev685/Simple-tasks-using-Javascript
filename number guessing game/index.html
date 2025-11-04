@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        overflow: hidden;
+        
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh;
+        background: #833AB4;
+        background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+    }
+   #result{
+        margin: 20px 0px;
+        font-size: 2rem;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: rgb(18, 224, 18);
+        padding: 10px;
+        border-radius: 7px;
+        transition: 1s linear all;
+        color: white;
+        display: none;
+    }
+    .box{
+        background-color: white;
+        min-height: 400px;
+        min-width: 400px;
+        border-radius: 1rem;
+        box-shadow: 3px 3px 30px rgba(247, 233, 221, 0.9);
+
+    }
+    .box > h1{
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+        padding: 10px;
+        color: orangered;
+    }
+    .box > h2 {
+        font-size: 5rem;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+        transition: 0.3s linear all;
+        user-select: none;
+    }
+    input{
+        margin: 10px 0px 10px 100px;
+        height: 50px;
+        font-size: 2rem;
+        width: 200px;
+        padding-left: 10px;
+        border: 2px solid black;
+        outline: none;
+        border-radius: 7px;
+    }
+    input:focus{
+        border: 2px solid rgba(20, 106, 235, 0.8);
+        box-shadow: 3px 3px 30px rgba(17, 63, 216, 0.8);
+    }
+    button{
+        margin: 10px 0px 10px 120px;
+        padding: 10px 50px;
+        border-radius: 10px;
+        cursor: pointer;
+        background-color: crimson;
+        color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 1.2rem;
+        outline: none;
+        border: none;
+        font-weight: bold;
+    }
+    button:hover{
+        background-color: deeppink;
+        transition: 0.3s linear all;
+    }
+    h3{
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding: 10px;
+        text-align: center;
+    }
+    
+</style>
+
+<body>
+    <h2 id="result">You Won !!!</h2>
+    <div class="box">
+        <h1>Number Guessing Game</h1>
+        <h2 id="showValue">0</h2>
+        <input type="number" name="" id="num"><br>
+        <button onclick="submit()">Check It</button><br>
+        <button onclick="reset()">Reset It</button>
+        <h3 id="increase"></h3>
+        <h3 id="decrease"></h3>
+    </div>
+
+<script>
+let increase = document.getElementById("increase");
+let decrease = document.getElementById("decrease");
+let result = document.getElementById("result");
+let showvalue = document.getElementById("showValue");
+let num = document.getElementById("num");
+let numValue = num.value;
+let inCount = 0;
+let desCount = 0;
+let arr = [];
+for(let i = 0;i<=1000;i++){
+    arr.push(i);
+} 
+let arrLength = arr.length; 
+function submit(){
+    let condition1 = Math.random()*arrLength;
+    let condition2 = Math.floor(condition1);
+    if(num.value == condition2){
+        showvalue.innerHTML = condition2;
+        result.style.display = "block";
+        increase.innerHTML = `How many times you won : ${inCount+=1}`;
+        num.value = " ";
+    }
+    else if(num.value !== ""){
+        showvalue.innerHTML = condition2;
+        result.style.backgroundColor = "red";
+        result.innerHTML = "Try Again !!!";
+        result.style.display = "block";
+        decrease.innerHTML = `How many times you lose :  ${desCount+=1}`;
+        num.value = " ";
+    }
+    else{
+        alert("Invalid Number Or Empty Space !!!")
+    }
+}
+
+function reset(){
+    showvalue.innerHTML = "0";
+    num.value = " ";
+}
+
+</script>
+
+</body>
+
+</html>
