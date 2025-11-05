@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js Location Finder</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: deeppink;
+    }
+    .box{
+        min-height: 350px;
+        min-width: 350px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow:  3px 3px 30px rgba(112, 151, 236, 0.9);
+    }
+    .box > h2{
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 2rem;
+        padding: 20px 0px;
+    }
+    .content > h1{
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: rgb(12, 159, 218);
+        padding: 10px;
+    }
+    .content > button{
+        width: 150px;
+        margin: 40px 20px 0px 40px;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 10px;
+        border: none;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 1.2rem;
+        outline: none;
+        background-color: blueviolet;
+        color: white;
+    }
+    .content > button:hover{
+        background-color: crimson;
+        color: white;
+        transition: 0.3s linear all;
+    }
+    span{
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: orangered;
+        font-size: 2rem;
+    }
+</style>
+<body>
+    <div class="box">
+        <h2>Current Location Finder</h2>
+        <div class="content">
+            <h1 >Latitude : <span id="lat"></span></h1>
+            <h1 >Longitude :  <span id="long"></span></h1>
+            <button onclick="check()">Find</button>
+            <button onclick="reset()">Reset</button>
+        </div>
+    </div>
+
+    <script>
+        let latitude = document.getElementById("lat");
+        let longitude = document.getElementById("long");
+
+        function check(){
+            if(navigator.geolocation){
+                let navigate = navigator.geolocation.getCurrentPosition((pos)=>{
+                latitude.innerHTML = pos.coords.latitude;
+                longitude.innerHTML = pos.coords.longitude;
+            })
+            }
+            else{
+                alert("Not Found Or Turn on Loaction !!!");
+            }
+        }
+        function reset(){
+            let req = confirm("Are you Sure to clear location data !!!");
+            if(req==true){
+                latitude.innerHTML = "";
+                longitude.innerHTML = "";
+            }
+            
+
+        }
+    </script>
+</body>
+</html>
