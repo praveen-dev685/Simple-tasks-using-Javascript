@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy Text using Javascript</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #a32cc4, #e63be9);
+            font-family: Arial, sans-serif;
+        }
+        .main {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 300px;
+        }
+        .main h2 {
+            color: #444;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            border: 2px solid #a32cc4;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+        }
+        input:focus {
+            border-color: #e63be9;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #a32cc4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        button:hover {
+            background: #e63be9;
+        }
+        textarea {
+            margin-top: 20px;
+            width: 90%;
+            height: 100px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            outline: none;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h2>Copy Text Tool</h2>
+        <input type="text" id="texts" placeholder="Write text here...">
+        <button onclick="copyText()">Copy</button>
+        <textarea placeholder="Paste your text here..."></textarea>
+    </div>
+
+    <script>
+        function copyText() {
+            let text = document.querySelector("#texts").value;
+            if (text.trim() === "") {
+                alert("Please write something first!");
+                return;
+            }
+
+            navigator.clipboard.writeText(text)
+            .then(() => {
+                alert("Text copied successfully!");
+            })
+            .catch(() => {
+                alert("Failed to copy text!");
+            });
+        }
+    </script>
+</body>
+</html>
