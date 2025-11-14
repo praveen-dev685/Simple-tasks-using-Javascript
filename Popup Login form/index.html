@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Login Form</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f2f2f2;
+        }
+
+        .open-btn {
+            padding: 12px 25px;
+            font-size: 18px;
+            background: #1a73e8;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background: #fff;
+            padding: 30px;
+            width: 350px;
+            border-radius: 10px;
+            position: relative;
+            animation: show 0.3s ease;
+        }
+
+        @keyframes show {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-box {
+            margin-bottom: 15px;
+        }
+
+        .input-box label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: #1a73e8;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <button class="open-btn" onclick="btn()">Login</button>
+
+
+    <div class="popup" id="popupForm">
+        <div class="popup-content">
+            <span class="close" id="closePopup">x</span>
+            <h2>Login</h2>
+
+            
+                <div class="input-box">
+                    <label>Email</label>
+                    <input type="email" id="email" placeholder="Enter email">
+                </div>
+
+                <div class="input-box">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Enter password">
+                </div>
+
+                <button type="submit" class="login-btn">Login</button>
+            
+        </div>
+    </div>
+
+    <script>
+
+        const openPopup = document.getElementById("openPopup");
+        const closePopup = document.getElementById("closePopup");
+        const popupForm = document.getElementById("popupForm");
+        
+
+        let a = true;
+        function btn() {
+            popupForm.style.display = "flex";
+        }
+
+        closePopup.addEventListener("click", () => {
+            popupForm.style.display = "none";
+        })
+        
+    </script>
+
+</body>
+
+</html>
