@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+    }
+
+    .main1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .main {
+        width: 320px;
+        border-radius: 25px;
+        background: radial-gradient(circle at top left, #3a1c71, #4a2a8c);
+        color: white;
+        text-align: center;
+        padding: 25px;
+        position: relative;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .main:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Rotating background glow */
+    .main::before {
+        content: '';
+        position: absolute;
+        width: 250%;
+        height: 250%;
+        top: -75%;
+        left: -75%;
+        background: conic-gradient(#ff4d4d, #ffcc00, #4dff4d, #4dffff, #4d4dff, #ff4dff, #ff4d4d);
+        animation: rotate 15s linear infinite;
+        z-index: 0;
+        opacity: 0.08;
+        border-radius: 50%;
+    }
+
+    .main>* {
+        position: relative;
+        z-index: 1;
+    }
+
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    #daytext {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .day {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 150px;
+        font-size: 5rem;
+        font-weight: 800;
+        color: #ffeb3b;
+        text-shadow: 0 0 20px #ffeb3b, 0 0 30px #ffd700, 0 0 40px #ffa500;
+        margin-bottom: 20px;
+        transition: transform 0.3s;
+    }
+
+    .day:hover {
+        transform: scale(1.1);
+    }
+
+    .other {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        min-height: 80px;
+        font-size: 1.5rem;
+        color: #ff7fff;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+    }
+</style>
+
+<body>
+    <div class="main1">
+        <div class="main">
+            <h3 id="daytext"></h3>
+            <div class="day">
+                <h1 id="dayno"></h1>
+            </div>
+            <div class="other">
+                <h3 id="month"></h3>
+                <h3 id="year"></h3>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const dayName = document.getElementById("daytext");
+        const dayNo = document.getElementById("dayno");
+        const monthname = document.getElementById("month");
+        const year = document.getElementById("year");
+        const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const date = new Date();
+        dayName.innerHTML = weekdays[date.getDay()];
+        dayNo.innerHTML = date.getDate();
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        monthname.innerHTML = months[date.getMonth()] + "/" + date.getMonth();
+        year.innerHTML = date.getFullYear();
+    </script>
+</body>
+
+</html>
