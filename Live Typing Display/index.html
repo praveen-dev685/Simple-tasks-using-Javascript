@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Typing Display</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Poppins, sans-serif;
+        }
+
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0a0e27;
+        }
+
+        #box{
+            width: 80%;
+            max-width: 700px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        h2{
+            color: #9cc9ff;
+            margin-bottom: 20px;
+            font-size: 28px;
+            letter-spacing: 1px;
+        }
+
+        #name{
+            color: white;
+            font-size: 32px;
+            border: 2px dashed #4ad7ff;
+            padding: 15px;
+            min-height: 60px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.05);
+            margin-bottom: 20px;
+        }
+
+
+        button{
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            color: white;
+            background: #1e90ff;
+            transition: 0.3s;
+        }
+
+        button:hover{
+            transform: translateY(-3px);
+            background: #3faeff;
+            box-shadow: 0 0 10px rgba(63, 174, 255, 0.7);
+        }
+
+        #clear{
+            background: #ff3e3e;
+        }
+
+        #clear:hover{
+            background: #ff6868;
+            box-shadow: 0 0 10px rgba(255, 80, 80, 0.7);
+        }
+    </style>
+
+</head>
+<body>
+    
+    <div id="box">
+        <h2>Start Typing…</h2>
+        <h1 id="name"></h1>
+
+        <button id="clear">Clear</button>
+        <button id="copy">Copy Text</button>
+    </div>
+
+    <script>
+        let name = document.getElementById("name");
+
+        window.addEventListener("keypress",(event)=>{
+            name.innerHTML += event.key;
+        });
+
+        let clear = document.getElementById("clear");
+        clear.addEventListener("click", ()=>{
+            name.innerHTML = "";
+        });
+
+        let copy = document.getElementById("copy");
+        copy.addEventListener("click", ()=>{
+            navigator.clipboard.writeText(name.innerText)
+            .then(()=>{
+                alert("Copied Successfully!");
+            })
+            .catch(()=>{
+                alert("Copy Failed!");
+            });
+        });
+    </script>
+</body>
+</html>
